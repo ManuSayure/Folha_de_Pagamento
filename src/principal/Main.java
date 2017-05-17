@@ -1,27 +1,33 @@
 //package main;
 package principal;
+
+import principal.Empregado;
 import java.util.Scanner;
+
 
 public class Main
 {
     public static void main(String[] args)
     {
+    	//ArrayList<Empregados> listaDeEmpregdos  = new ArrayList<Empregados>(500);
         Empregado[] listaDeEmpregados = new Empregado[500];
+    	
         Empregado[] copia = new Empregado[500];
         Empregado[] redo = new Empregado[500];
         int quantidadeEmpregados = 0, idLivre = 1;
         
         // MENU
         Scanner ler = new Scanner(System.in);
-        Empregado novoFuncionario = new Empregado("","",0,0.0,0.0,0);
-        Empregado CopiaNovoFuncionario = new Empregado("","",0,0.0,0.0,0);
+        Empregado novoFuncionario = new Empregado("", "" , 0, 0.0, 0.0, 0);
+        Empregado copiaNovoFuncionario = new Empregado("", "", 0, 0.0, 0.0, 0);
         boolean sair,estado;
-        int opcao, identificador, horaEntrada, minutosEntrada, horaSaida, key,idKey;
+        int opcao, identificador, horaEntrada, minutosEntrada, horaSaida, key=0;
+        int  idKey=0;
         int minutosSaida, horasTrabalhadas, lendoInt;
-        double lendoDouble, valor, porcentagem, copiaComissao, copiaSalario, copiaTaxaSindicalExtra;
-        String lendoString, horaString;
-        Agenda = new int[10]String[10]
-        String[] semana = new String("sabado","domingo","segunda", "terÁa","quarta","quinta","sexta");
+        double lendoDouble, valor, porcentagem, copiaComissao= 0.0, copiaSalario = 0.0, copiaTaxaSindicalExtra = 0.0;
+        String lendoString = "", horaString;
+        //Agenda = 
+        String semana[] = {"sabado","domingo","segunda", "ter√ßa","quarta","quinta","sexta"};
         int data = 1;
 		int dia = 0;
 		int horas = 0;
@@ -32,7 +38,7 @@ public class Main
         do
         {
     		System.out.println(" ------------------------------------------    ");
-        	System.out.println("Digite a opÁ„o desejada\n                      ");
+        	System.out.println("Digite a op√ß√£o desejada\n                      ");
             System.out.println("01 - Adicionar empregado                       ");
             System.out.println("02 - Remover empregado                         ");
             System.out.println("03 - Lancar cartao de ponto                    ");
@@ -47,7 +53,7 @@ public class Main
             System.out.println(" ------------------------------------------    ");
         	System.out.println("                                               ");
     		System.out.print(" >>  ");
-
+    	 
             opcao = ler.nextInt();
             ler.nextLine();
             
@@ -58,17 +64,17 @@ public class Main
                     System.out.println(" Digite o nome completo:");
             		novoFuncionario.nome = ler.nextLine();
             		
-                    System.out.println("Digite o endereÁo:");
+                    System.out.println("Digite o endere√ßo:");
             		novoFuncionario.endereco = ler.nextLine();
             		
-                    System.out.println("Escolha o tipo do funcion·rio:\n"
+                    System.out.println("Escolha o tipo do funcion√°rio:\n"
                             + "1-Horista\n"
                             + "2-Assalariado\n"
                             + "3-Comissionado");
                     novoFuncionario.tipo = ler.nextInt();
                     if (novoFuncionario.tipo == 3 )
                     {
-                    	System.out.println("Digite a comiss„o: ex 10%")	
+                    	System.out.println("Digite a comiss√£o: ex 10%")	;
                     	novoFuncionario.comissao = ler.nextInt();
                     	novoFuncionario.correto = 2;                    	
                     }
@@ -82,7 +88,7 @@ public class Main
                     	
                     }
                     
-                    System.out.println("Digite o sal·rio do funcion·rio:\n"
+                    System.out.println("Digite o sal√°rio do funcion√°rio:\n"
                             + "(Se horista, o valor da hora trabalhada\n"
                             + " Se assalariado ou comissionado, o valor mensal)");
                     System.out.print("R$:  ");
@@ -90,16 +96,16 @@ public class Main
                     novoFuncionario.salarioBruto = ler.nextDouble();
                    novoFuncionario.comissao = 0.0;
                     novoFuncionario.id = idLivre;
-                    idKey= (id--);
+                    idKey= (idLivre-1);
                     listaDeEmpregados[idKey] = new Empregado
         (novoFuncionario.nome, novoFuncionario.endereco, novoFuncionario.tipo, 
                             novoFuncionario.salarioBruto, novoFuncionario.comissao, 
                             novoFuncionario.id);
-                    CopiaNovoFuncionario = listaDeEmpregados[idKey];
+                    copiaNovoFuncionario = listaDeEmpregados[idKey];
                     idLivre++;
                     quantidadeEmpregados++;
                     key = opcao; 
-                    System.out.println("O funcionario do ID " +(idLivre - 1)
+                    System.out.println("O funcionario do ID " +(idLivre)
                             + " foi cadastrado com sucesso!\n");
                 break;
                 case 2: //REMOVER FUNCIONARIO
@@ -116,25 +122,25 @@ public class Main
                         for(int i = 0; i<quantidadeEmpregados; i++)
                         {
                             if(listaDeEmpregados[i].id == lendoInt)
-                            {	idKey=id;
+                            {	idKey = lendoInt;
                                 listaDeEmpregados[i].id = -1;
-                                sair=true;
+                                sair = true;
                                 key = opcao; 
                                 quantidadeEmpregados--;
-                                System.out.println(" O funcionario +"listaDeEmpredados.[i].nome"+ foi removido com sucesso!!");
+                                System.out.println(" O funcionario " + (listaDeEmpregados[i].nome) + " foi removido com sucesso!!");
                            
                             }
                         }
                         if(!sair)
                         {
-                            System.out.println("O Funcionario n„o foi encontrado!");
+                            System.out.println("O Funcionario n√£o foi encontrado!");
                         }
                     }else
                     {
-                        System.out.println("N„o foi possivel realizar esta opÁ„o, pois n„o existe funcionarios!");
+                        System.out.println("N√£o foi possivel realizar esta op√ß√£o, pois n√£o existe funcionarios!");
                     }
                 break;
-                case 3: // LAN«AR CARTAO DE PONTO
+                case 3: // LAN√áAR CARTAO DE PONTO
                     System.out.println("Informe o ID do funcionario horista:");
                     identificador = ler.nextInt();
                     ler.nextLine();
@@ -149,7 +155,7 @@ public class Main
                                     * 10 + (int) ( horaString.charAt(1) - '0');
                             minutosEntrada = (int) ( horaString.charAt(3) - '0') 
                                     * 10 + (int) ( horaString.charAt(4) - '0');
-                            System.out.println("Informe o horario de saÌda:");
+                            System.out.println("Informe o horario de sa√≠da:");
                             horaString = ler.nextLine();
                             horaSaida = (int) ( horaString.charAt(0) - '0') 
                                     * 10 + (int) ( horaString.charAt(1) - '0');
@@ -163,27 +169,27 @@ public class Main
                             if(horasTrabalhadas <= 8)
                             {
                             	idKey = i;
-                            	copiaSalario = listaDeEmpregado[i].salarioLiquido;
+                            	copiaSalario = listaDeEmpregados[i].salarioLiquido;
                             	
                                 listaDeEmpregados[i].salarioLiquido += (listaDeEmpregados[i].salarioBruto * horasTrabalhadas);
                             }else
                             {
                             	idKey = i;
-                            	copiaSalario = listaDeEmpregado[i].salarioLiquido;
+                            	copiaSalario = listaDeEmpregados[i].salarioLiquido;
                                 listaDeEmpregados[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido + (listaDeEmpregados[i].salarioBruto * 8);
                                 listaDeEmpregados[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido + (horasTrabalhadas - 8.0) * listaDeEmpregados[i].salarioBruto * 1.5;
                             }
-                            System.out.println("O Cart„o foi batido com sucesso!");
+                            System.out.println("O Cart√£o foi batido com sucesso!");
                             sair = true;
                             key = opcao; 
                         }
                     }
                     if( !sair )
                     {
-                        System.out.println("O Empregado n„o foi encontrado!");
+                        System.out.println("O Empregado n√£o foi encontrado!");
                     }
                 break;
-                case 4:// LAN«AR VENDA NO SISTEMA
+                case 4:// LAN√áAR VENDA NO SISTEMA
                     System.out.println("Informe o ID do funcionario comissionado:\n");
                     identificador = ler.nextInt();
                     sair = false;
@@ -194,22 +200,22 @@ public class Main
                             System.out.println("Informe o valor da venda R$:\n ");
                             valor = ler.nextDouble();
                             
-                            System.out.println("Informe a porcentagem da comiss„o:\n ");
+                            System.out.println("Informe a porcentagem da comiss√£o:\n ");
                             porcentagem = ler.nextDouble(); 
                             copiaComissao = listaDeEmpregados[i].comissao;
                             listaDeEmpregados[i].comissao += valor / 100 * porcentagem;
                             sair = true;
                             key = opcao; 
                             idKey=i;
-                            System.out.println("A comiss„o de R$ "+(valor / 100 * porcentagem)+ " foi registrada!");
+                            System.out.println("A comiss√£o de R$ "+(valor / 100 * porcentagem)+ " foi registrada!");
                         }
                     }
                     if( !sair )
                     {
-                        System.out.println("O Empregado n„o foi encontrado!");
+                        System.out.println("O Empregado n√£o foi encontrado!");
                     }
                 break;
-                case 5: //LAN«AR UMA NOVA TAXA DE SERVI«O
+                case 5: //LAN√áAR UMA NOVA TAXA DE SERVI√áO
                     System.out.println("Informe o ID do funcionario:");
                     identificador = ler.nextInt();
                     sair = false;
@@ -217,18 +223,18 @@ public class Main
                     {
                         if(listaDeEmpregados[i].id == identificador)
                         {
-                            System.out.println("Informe a taxa de serviÁo R$:");
+                            System.out.println("Informe a taxa de servi√ßo R$:");
                             copiaTaxaSindicalExtra=  listaDeEmpregados[i].taxaSindicalExtra;
                             listaDeEmpregados[i].taxaSindicalExtra += ler.nextDouble();
                             sair = true;
                             key = opcao; 
                             idKey= i;
-                            System.out.println("A taxa de serviÁo de R$ "+lendoDouble+ " foi registrada!");
+                            System.out.println("A taxa de servi√ßo de R$ "+ listaDeEmpregados[i].taxaSindicalExtra + " foi registrada!");
                         }
                     }
                     if( !sair )
                     {
-                        System.out.println("O Empregado n„o foi encontrado!");
+                        System.out.println("O Empregado n√£o foi encontrado!");
                     }
                 break;
                 case 6: // EDITAR DADOS DO FUNCIONARIO
@@ -239,51 +245,51 @@ public class Main
                     {
                         if(listaDeEmpregados[i].id == identificador)
                         {	 idKey= i; 
-                        	System.out.println("Qual informaÁ„o vocÍ deseja modificar? 1- Nome\n 2- EndereÁo \n 3- Tipo do funcion·rio\n 4 - Salario bruto\n 5- Comissao\n 6 AssociaÁ„o Sindical\n 7 Metodo de Pagamento \n 0- sair");
+                        	System.out.println("Qual informa√ß√£o voc√™ deseja modificar? 1- Nome\n 2- Endere√ßo \n 3- Tipo do funcion√°rio\n 4 - Salario bruto\n 5- Comissao\n 6 Associa√ß√£o Sindical\n 7 Metodo de Pagamento \n 0- sair");
                         	lendoInt = ler.nextInt();
                         	while(lendoInt != 0){                      	
                         	                        	
-                        	CopiaNovoFuncionario = listaDeEmpregados[idKey];
+                        	copiaNovoFuncionario = listaDeEmpregados[idKey];
                         	
                         	if (lendoInt == 1){
-                        		System.out.println("Substituir o nome completo do Funcion·rio: " + listaDeEmpregados[i].nome);
+                        		System.out.println("Substituir o nome completo do Funcion√°rio: " + listaDeEmpregados[i].nome);
                                 listaDeEmpregados[i].nome = ler.nextLine();
                                 sair = true;
                                 key = opcao;
                         	}
                         	else if(lendoInt == 2){
-                        		System.out.println("Substituir o endereÁo do funcion·rio: " + listaDeEmpregados[i].endereco);
+                        		System.out.println("Substituir o endere√ßo do funcion√°rio: " + listaDeEmpregados[i].endereco);
                                 listaDeEmpregados[i].endereco = ler.nextLine();
                                 sair = true;
                                 key = opcao;
                         	}
                         	else if(lendoInt == 3){
-                        		 System.out.println("Substitua o tipo do funcion·rio: + \n1-Horista\n2-Assalariado \n3-Comissionado\nTipo Atual: " 
+                        		 System.out.println("Substitua o tipo do funcion√°rio: + \n1-Horista\n2-Assalariado \n3-Comissionado\nTipo Atual: " 
                                     + listaDeEmpregados[i].tipo );
                                  listaDeEmpregados[i].tipo = ler.nextInt();
                                  sair = true;
                                  key = opcao;
                         	}
                         	else if(lendoInt == 4){
-                        		 System.out.println("Substitua o sal·rio do funcion·rio:\n" //4
-                            + "(Se horista, o valor da hora trabalhada\n"
-                            + " Se assalariado ou comissionado, o valor mensal)
+                        		 System.out.println("Substitua o sal√°rio do funcion√°rio:\n" //4
+                            + "Se horista, o valor da hora trabalhada\n"
+                            + "Se assalariado ou comissionado, o valor mensal"
                                     + "\nValor Atual: R$ " 
                                     + listaDeEmpregados[i].salarioBruto );
                             System.out.print("R$ ");
-                            listaDeEmpredados[i].salarioBruto = ler.nextDouble();
+                            listaDeEmpregados[i].salarioBruto = ler.nextDouble();
                             sair = true;
                             key = opcao;
                         	}	
                         	else if(lendoInt == 5){
-                        		System.out.println("Substitua o valor da comiss„o do funcion·rio:"); //5
+                        		System.out.println("Substitua o valor da comiss√£o do funcion√°rio:"); //5
                         		System.out.print("Valor Atual: R$ " + listaDeEmpregados[i].comissao + "\n");
                         		listaDeEmpregados[i].comissao = ler.nextDouble();
                         		sair = true;
                                 key = opcao;
                         	}
                         	else if(lendoInt == 6){
-                        		System.out.println("Substitua o estado de associaÁ„o ao sindicato: (S/N)"); //6
+                        		System.out.println("Substitua o estado de associa√ß√£o ao sindicato: (S/N)"); //6
                         		lendoString = ler.nextLine();
                         		estado = false;
                         		sair = true;
@@ -304,19 +310,19 @@ public class Main
                             
                         	
                         	else if(lendoInt == 7){
-                        		System.out.println("Substitua o mÈtodo de pagamento do funcion·rio:" //7
+                        		System.out.println("Substitua o m√©todo de pagamento do funcion√°rio:" //7
                             		+ "\n1-Cheque pelos correios"
-                                    + "\n2-Cheque em m„os"
-                                    + "\n3-DepÛsito em conta banc·ria"
-                                    + "\nMÈtodo Atual:" + listaDeEmpregados[i].metodoDePagamento );
+                                    + "\n2-Cheque em m√£os"
+                                    + "\n3-Dep√≥sito em conta banc√°ria"
+                                    + "\nM√©todo Atual:" + listaDeEmpregados[i].metodoDePagamento );
                            listaDeEmpregados[i].metodoDePagamento = ler.nextInt();
                            sair = true;
                            key = opcao;
                         	}  
                         	else {
-                        		 System.out.println("OpÁao inv·lida!");
+                        		 System.out.println("Op√ßao inv√°lida!");
                         	}
-                        	System.out.println("Qual informaÁ„o vocÍ deseja modificar? 1- Nome\n 2- EndereÁo \n 3- Tipo do funcion·rio\n 4 - Salario bruto\n 5- Comissao\n 6 AssociaÁ„o Sindical\n 7 Metodo de Pagamento \n 0- sair");
+                        	System.out.println("Qual informa√ß√£o voc√™ deseja modificar? 1- Nome\n 2- Endere√ßo \n 3- Tipo do funcion√°rio\n 4 - Salario bruto\n 5- Comissao\n 6 Associa√ß√£o Sindical\n 7 Metodo de Pagamento \n 0- sair");
                         	lendoInt = ler.nextInt();
                         	sair = true;
                             key = opcao;
@@ -324,25 +330,25 @@ public class Main
                             
                             
                             
-                            System.out.println("O funcion·rio foi editado com sucesso!");
+                            System.out.println("O funcion√°rio foi editado com sucesso!");
                         }
                     }
                     if( !sair )
                     {
-                        System.out.println("O Empregado n„o foi encontrado!");
+                        System.out.println("O Empregado n√£o foi encontrado!");
                     }
                 break;
                 case 7: // RODAR A FOLHA DE PAGAMENTO PRA HOJE
                 	
         				
-        				/for(int i =0; i < quantidadeEmpregados; i++)
+        				for(int i =0; i < quantidadeEmpregados; i++)
         				{
-        					copia[i] = new listaDeEmpregados();
+        					copia[i] =  new Empregado("", "", 0, 0.0, 0.0, 0);
         					copia[i].nome = listaDeEmpregados[i].nome; 
-        					copia[i].endereÁo = listaDeEmpregados[i].endereÁo;
+        					copia[i].endereco = listaDeEmpregados[i].endereco;
         					copia[i].tipo = listaDeEmpregados[i].tipo;
         					copia[i].metodoDePagamento = listaDeEmpregados[i].metodoDePagamento;
-        					copia[i].salario = listaDeEmpregados[i].salario;
+        					copia[i].salarioBruto = listaDeEmpregados[i].salarioBruto;
         					copia[i].comissao = listaDeEmpregados[i].comissao;
         				    copia[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido;
         					copia[i].taxaSindicalExtra = listaDeEmpregados[i].taxaSindicalExtra;
@@ -356,21 +362,21 @@ public class Main
         					if(listaDeEmpregados[i].recebimento.equals(semana[dia])){
         						listaDeEmpregados[i].recebe++;
         					}
-        					//System.out.println(funcion·rio[i].recebimento + "recebe:" + funcion·rio[i].recebe + "correto" + funcion·rio[i].correto);
-        					if(listaDeEmpregados[i].tipo == 1) && (listaDeEmpregados[i].recebe == listaDeEmpregados[i].correto)){
+        					//System.out.println(funcion√°rio[i].recebimento + "recebe:" + funcion√°rio[i].recebe + "correto" + funcion√°rio[i].correto);
+        					if((listaDeEmpregados[i].tipo == 1) && (listaDeEmpregados[i].recebe == listaDeEmpregados[i].correto)){
         						if(listaDeEmpregados[i].salarioLiquido != 0){
-        							System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\nSal·rio bruto:	" + listaDeEmpregados[i].salarioBruto + "\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindical +  listaDeEmpregados[i].taxaSindicalExtra) + "\nSal·rio recebido: " + (listaDeEmpregados[i].salarioLiquido -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
+        							System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\nSal√°rio bruto:	" + listaDeEmpregados[i].salarioBruto + "\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindical +  listaDeEmpregados[i].taxaSindicalExtra) + "\nSal√°rio recebido: " + (listaDeEmpregados[i].salarioLiquido -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
         							listaDeEmpregados[i].salarioLiquido = 0.0;
         							listaDeEmpregados[i].recebe = 0;
         						}
         					}
-        					else if((listaDeEmpregados[i].tipo == 2) && (listaDeEmpregados[i].recebe == listaDeEmpregados.correto)){
-        						System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\nSal·rio bruto:	" + listaDeEmpregados[i].salarioBruto + "\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindical +  listaDeEmpregados[i].taxaSindicalExtra) + "\nSal·rio recebido: " + (listaDeEmpregados[i].salarioLiquido -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
+        					else if((listaDeEmpregados[i].tipo == 2) && (listaDeEmpregados[i].recebe == listaDeEmpregados[i].correto)){
+        						System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\nSal√°rio bruto:	" + listaDeEmpregados[i].salarioBruto + "\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindical +  listaDeEmpregados[i].taxaSindicalExtra) + "\nSal√°rio recebido: " + (listaDeEmpregados[i].salarioLiquido -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
         							listaDeEmpregados[i].recebe = 0;
         							}
         					
         					else if((listaDeEmpregados[i].tipo == 3) && (listaDeEmpregados[i].recebe == listaDeEmpregados[i].correto)){
-        						System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\n Sal·rio Bruto :	" + funcion·rio[i].salarioBruto + "+ Comiss„o : "+listaDeEmpregados[i].comissao +"\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical) + "\nSal·rio recebido: " + (listaDeEmpregados[i].liquido + listaDeEmpregados.comissao -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
+        						System.out.println("PAGAMENTO\n\nID:	" + listaDeEmpregados[i].id + "\nNome:	" + listaDeEmpregados[i].nome + "\n Sal√°rio Bruto :	" + listaDeEmpregados[i].salarioBruto + "+ Comiss√£o : "+listaDeEmpregados[i].comissao +"\nValor descontado pelo sindicato:	" +  (listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical) + "\nSal√°rio recebido: " + (listaDeEmpregados[i].salarioLiquido + listaDeEmpregados[i].comissao -(listaDeEmpregados[i].taxaSindicalExtra +  listaDeEmpregados[i].taxaSindical)));
         							listaDeEmpregados[i].salarioLiquido = 0.0;
         					}
         				}
@@ -383,111 +389,108 @@ public class Main
         			}
         			System.out.println( data + "\\05\\2017," + semana[dia] +"\n");
         			data++;
-        		}
-                break;
-                case 8: // FAZER OU DESFAZER
-                	System.out.println("Digite a opÁ„o desejada\n         ");
+        		
+                break;        
+                case 8 :	// FAZER OU DESFAZER
+                	System.out.println("Digite a op√ß√£o desejada\n         ");
                     System.out.println("01 - Redo                         ");
                     System.out.println("02 - Undo                         ");
                     opcao = ler.nextInt();
-                    double ultimoValor;
+                    double ultimoValor = 0.0;
                     
-                switch(opcao)
-                case 1: // Redo
-                	
-                	if(key = 1)
-                	{
-                		listaDeEmpregados[idKey] = copiaNovoFuncionario;
-                	}
-                	if(key = 2)
-                	{
-                		listaDeEmpregados[idKey].id = -1;
-                	}
-                	if(key = 3)
-                	{
-                		
-                		listaDeEmpregados[idKey].salarioLiquido= ultimoValor;
-                	}
-                	if(key = 4)
-                	{	
-                		 listaDeEmpregados[idkey].comissao = ultimoValor;
-                		 key = 4;
-                	}
-                	if(key = 5)
-                	{
-                		listaDeEmpregados[idKey].taxaSindicalExtra  = ultimoValor;
-                	}
-                	if(key = 6)
-                	{ 
-                		listaDeEmpregados[idKey] = novoFuncionrio;
-                	}
-                	if(key = 7)
-                	{
-                		for(int i =0; i < quantidadeEmpregados; i++)
-        				{
-                		 copia[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido;
-                		 copia[i].recebe = listaDeEmpregados[i].recebe;
-                		 
-                		 listaDeEmpregados[i].salarioLiquido = redo[i].salarioLiquido ;    				
-                		 listaDeEmpregados[i].recebe = redo[i].recebe;
-                		
-        				}
-                	}
-                	
-                case 2:
-                	break;
-                	if(key = 1)
-                	{   
-                		listaDeEmpregados[idKey].remove;
-                	}
-                	if(key = 2)
-                	{
-                		listaDeEmpregados[idKey].id = idKey;
-                	}
-                	if(key = 3)
-                	{
-                		ultimoValor = listaDeEmpregados[idKey].salarioLiquido;
-                		listaDeEmpregados[idKey].salarioLiquido= copiaSalario;
-                	}
-                	if(key = 4)
-                	{
-                		ultimoValor = listaDeEmpregados[idkey].comissao;
-                		 listaDeEmpregados[idkey].comissao = copiaComissao;
-                		 key = 4;
-                	}
-                	if(key = 5)
-                	{
-                		ultimoValor = listaDeEmpregados[idkey].taxaSindicalExtra;
-                		listaDeEmpregados[idKey].taxaSindicalExtra  = copiaTaxaSindicalExtra;
-                	}
-                	if(key = 6)
-                	{ 
-                		novoFuncionrio = listaDeEmpregados[idKey];
-                		
-                		listaDeEmpregados[idKey] = copiaNovoFuncionario;
-                		
-                	}
-                	if(key = 7)
-                	{
-                		for(int i =0; i < quantidadeEmpregados; i++)
-        				{
-                			for(int i =0; i < quantidadeEmpregados; i++)
-            				{
-                    		 redo[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido;    				
-                    		 redo[i].recebe = listaDeEmpregados[i].recebe ;            				
-                    		 listaDeEmpregados[i].salarioLiquido = copia[i].salarioLiquido ;    				
-                    		 listaDeEmpregados[i].recebe = copia[i].recebe;
-        				}
-                	}
-                	
-                    
+                    switch (opcao)
+                    {
+	                case 1: // Redo
+	                	
+	                	if(key == 1)
+	                	{
+	                		listaDeEmpregados[idKey] = copiaNovoFuncionario;
+	                	}
+	                	if(key == 2)
+	                	{
+	                		listaDeEmpregados[idKey].id = -1;
+	                	}
+	                	if(key == 3)
+	                	{
+	                		
+	                		listaDeEmpregados[idKey].salarioLiquido= ultimoValor;
+	                	}
+	                	if(key == 4)
+	                	{	
+	                		 listaDeEmpregados[idKey].comissao = ultimoValor;
+	                		 key = 4;
+	                	}
+	                	if(key == 5)
+	                	{
+	                		listaDeEmpregados[idKey].taxaSindicalExtra  = ultimoValor;
+	                	}
+	                	if(key == 6)
+	                	{ 
+	                		listaDeEmpregados[idKey] = novoFuncionario;
+	                	}
+	                	if(key == 7)
+	                	{
+	                		for(int i =0; i < quantidadeEmpregados; i++)
+	        				{
+	                		 copia[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido;
+	                		 copia[i].recebe = listaDeEmpregados[i].recebe;
+	                		 
+	                		 listaDeEmpregados[i].salarioLiquido = redo[i].salarioLiquido ;    				
+	                		 listaDeEmpregados[i].recebe = redo[i].recebe;
+	                		
+	        				}
+	                	}
+	                break;	                	
+	                case 2: // UNDO
+	                	if(key == 1)
+	                	{   
+	                		listaDeEmpregados[idKey] = null;
+	                	}
+	                	if(key == 2)
+	                	{
+	                		listaDeEmpregados[idKey].id = idKey;
+	                	}
+	                	if(key == 3)
+	                	{
+	                		ultimoValor = listaDeEmpregados[idKey].salarioLiquido;
+	                		listaDeEmpregados[idKey].salarioLiquido= copiaSalario;
+	                	}
+	                	if(key == 4)
+	                	{
+	                		ultimoValor = listaDeEmpregados[idKey].comissao;
+	                		 listaDeEmpregados[idKey].comissao = copiaComissao;
+	                		 key = 4;
+	                	}
+	                	if(key == 5)
+	                	{
+	                		ultimoValor = listaDeEmpregados[idKey].taxaSindicalExtra;
+	                		listaDeEmpregados[idKey].taxaSindicalExtra  = copiaTaxaSindicalExtra;
+	                	}
+	                	if(key == 6)
+	                	{ 
+	                		novoFuncionario = listaDeEmpregados[idKey];
+	                		
+	                		listaDeEmpregados[idKey] = copiaNovoFuncionario;
+	                		
+	                	}
+	                	if(key == 7)
+	                	{
+	                		for(int i =0; i < quantidadeEmpregados; i++) 
+	                		{
+	                			redo[i].salarioLiquido = listaDeEmpregados[i].salarioLiquido;    				
+			                    redo[i].recebe = listaDeEmpregados[i].recebe ;            				
+			                    listaDeEmpregados[i].salarioLiquido = copia[i].salarioLiquido ;    				
+			                    listaDeEmpregados[i].recebe = copia[i].recebe;
+	            			}
+	        		   	}
+                }
                 break;
                 case 9:// VIZUALIZAR A AGENDA DE PAGAMENTO
-                	System.out.println("ForneÁa o nome do funcion·rio a ser editado:");
+                	System.out.println("Forne√ßa o nome do funcion√°rio a ser editado:");
     				//getchar = scanner.nextLine();
-    				lendoString = scanner.nextLine();
+    				lendoString = ler.nextLine();
     				System.out.println("1:	semanalmente\n2: mensalmente\n 3:bi-semanalmente");
-    				lendoInt = scanner.nextInt();
+    				lendoInt = ler.nextInt();
     				for(int i=0; i < quantidadeEmpregados; i++)
     				{
     					if(listaDeEmpregados[i].nome != null)
@@ -508,30 +511,30 @@ public class Main
                     
                 break;
                 case 10://CRIAR UMA NOVA AGENDA DE PAGAMENTO
-                	System.out.println("ForneÁa o nome do funcion·rio a ser editado:\n");
+                	System.out.println("Forne√ßa o nome do funcion√°rio a ser editado:\n");
     				//getchar = scanner.nextLine();
-    				lendoString = scanner.nextLine();
+    				lendoString = ler.nextLine();
     				sair= false;
     				
-    				for(int i=0; i< quatidadeEmpregado; i++)
+    				for(int i=0; i< quantidadeEmpregados; i++)
     				{
-    					if(listaDeEmpregdos[i].nome.equal(lendoString) && listaDeEmpregdos[i].nome != null )
+    					if(listaDeEmpregados[i].nome.equals(lendoString) && listaDeEmpregados[i].nome != null )
     					{
     						System.out.println("Digite\n1-Mensal\n2-semanal");
-    						lendoInt= scanner.nextInt();
+    						lendoInt= ler.nextInt();
     						if (lendoInt == 2)
     						{
     							System.out.println("Digite o dia da semana e quantidade de vezes. EX: segunda 2");
-    							listaDeEmpregados[i].recebimento = scanner.nextLine() ;
-    							listaDeEmpregados[i].correto = scanner.nextInt();
-    							System.out.println("MudanÁas realizadas com sucesso!\n");
+    							listaDeEmpregados[i].recebimento = ler.nextLine() ;
+    							listaDeEmpregados[i].correto = ler.nextInt();
+    							System.out.println("Mudan√ßas realizadas com sucesso!\n");
     							sair= true;
     						}
     					}
     					
     				}
     				if(!sair){
-    					System.out.println("MudanÁas realizadas com sucesso!\n");
+    					System.out.println("Mudan√ßas realizadas com sucesso!\n");
     				}
     				                
                 break;
@@ -540,10 +543,13 @@ public class Main
                             + "\nMuito obrigado pelo uso!!!");
                 break;
                 default:
-                    System.out.println("VocÍ digitou uma opÁ„o incorreta,"
-                            + " por favor, digite outra opÁ„o!\n");
-            }
+                    System.out.println("Voc√™ digitou uma op√ß√£o incorreta,"
+                            + " por favor, digite outra op√ß√£o!\n");
+            }   
+            break;
+                   
+        
         }while(opcao != 0);
     }
+ }
     
-}
